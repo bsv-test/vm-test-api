@@ -48,6 +48,10 @@ $app->singleton(
     App\Console\Kernel::class
 );
 
+$app->register(Laravel\Tinker\TinkerServiceProvider::class);
+$app->register(Illuminate\Mail\MailServiceProvider::class);
+
+
 /*
 |--------------------------------------------------------------------------
 | Register Config Files
@@ -60,6 +64,8 @@ $app->singleton(
 */
 
 $app->configure('app');
+$app->configure('mail');
+
 
 /*
 |--------------------------------------------------------------------------
