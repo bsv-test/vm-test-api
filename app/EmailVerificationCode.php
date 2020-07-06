@@ -69,11 +69,9 @@ class EmailVerificationCode extends Model
     public static function canUserGetNewCode($user)
     {
         $codesHourCount = EmailVerificationCode::where('user_id', $user->id)
-            ->whereIn('state', self::$pendingStates)
             ->where('created_at', '>', Carbon::now()->subHour())
             ->count();
         $codes5MinutesCount = EmailVerificationCode::where('user_id', $user->id)
-            ->whereIn('state', self::$pendingStates)
             ->where('created_at', '>', Carbon::now()->subMinutes(5))
             ->count();
         if ($codesHourCount >= self::LIMIT_USER_REQUESTS_PER_HOUR) {

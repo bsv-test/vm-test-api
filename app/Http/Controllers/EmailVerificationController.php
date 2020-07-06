@@ -18,7 +18,7 @@ class EmailVerificationController extends Controller
         $user = User::where('email', $request->input('email'))->firstOrFail();
         if (!EmailVerificationCode::canUserGetNewCode($user)) {
             return response()->json(
-                ['status' => 'error', 'message' => 'Limit per hour exceeded'],
+                ['status' => 'error', 'message' => 'Request limit exceeded'],
                 Response::HTTP_TOO_MANY_REQUESTS
             );
         }
